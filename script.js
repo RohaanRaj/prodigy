@@ -44,6 +44,18 @@ const certificateData = {
 const params = new URLSearchParams(window.location.search);
 const cinParam = params.get("cin");
 
+const domainMapping = {
+  "dev.prodigyinfotech.duckdns.org": "pit/may25/11519", // Ritvik
+  "dev1.prodigyinfotech.duckdns.org": "pit/may25/11064", // Gautham
+  "dev2.prodigyinfotech.duckdns.org": "pit/may25/11647", // Rohan
+  "localhost:9001": "pit/may25/11519",
+  "localhost:9002": "pit/may25/11064",
+  "localhost:9003": "pit/may25/11647",
+  "127.0.0.1:9001": "pit/may25/11519",
+  "127.0.0.1:9002": "pit/may25/11064",
+  "127.0.0.1:9003": "pit/may25/11647",
+};
+
 function populateCertificate(data) {
   document.getElementById("cin").textContent = data.cin;
   document.getElementById("name").textContent = data.name;
@@ -55,15 +67,40 @@ function populateCertificate(data) {
   document.getElementById("issue").textContent = data.issue;
 }
 
+const resolveCin = () => {
+  if (cinParam) {
+    return cinParam.toLowerCase();
+  }
+
+  const hostname = window.location.hostname.toLowerCase();
+  const hostWithPort = `${hostname}:${window.location.port}`;
+
+  return domainMapping[hostWithPort] || domainMapping[hostname];
+};
+
+const mappingCin = resolveCin();
+const defaultCin = "pit/may25/10206";
+
+let selectedCin = null;
+
 if (cinParam) {
   const normalized = cinParam.toLowerCase();
   if (certificateData[normalized]) {
-    populateCertificate(certificateData[normalized]);
+    selectedCin = normalized;
   } else {
     document.querySelector(".card h2").textContent = "Certificate not found";
     document.querySelector("dl").innerHTML =
       '<p class="not-found">We could not match that CIN. Please confirm the value and try again.</p>';
+    selectedCin = null;
   }
+} else if (mappingCin && certificateData[mappingCin]) {
+  selectedCin = mappingCin;
+} else {
+  selectedCin = defaultCin;
+}
+
+if (selectedCin) {
+  populateCertificate(certificateData[selectedCin]);
 }
 
 const scrollButton = document.getElementById("scrollTop");
