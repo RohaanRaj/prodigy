@@ -1,0 +1,28 @@
+version: "3.9"
+
+services:
+  verify-8081:
+    build: .
+    container_name: verify-8081
+    ports:
+      - "9001:80"
+
+  verify-8082:
+    build: .
+    container_name: verify-8082
+    ports:
+      - "9002:80"
+
+  verify-8083:
+    build: .
+    container_name: verify-8083
+    ports:
+      - "9003:80"
+
+  verify-8084:
+    build: .
+    container_name: verify-8084
+    ports:
+      - "9004:80"
+
+

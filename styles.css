@@ -1,0 +1,264 @@
+:root {
+  --primary: #2253ff;
+  --primary-dark: #0a1f52;
+  --text: #1a1f36;
+  --muted: #6b7280;
+  --card-bg: #ffffff;
+  --bg: #f4f6ff;
+  font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.container {
+  width: min(1200px, 90vw);
+  margin: 0 auto;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.95);
+  border-bottom: 1px solid #e3e8ff;
+  box-shadow: 0 6px 30px rgba(4, 16, 86, 0.06);
+  backdrop-filter: blur(8px);
+}
+
+.header-inner {
+  padding: 1rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+.logo img {
+  width: 160px;
+  height: auto;
+}
+
+.logo-text {
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+nav a.active {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.hero {
+  background: linear-gradient(135deg, #3b64ff, #1232ad);
+  color: white;
+  padding: 2rem 0 2.5rem;
+  text-align: center;
+  position: relative;
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url("assets/bg-shape.svg"), radial-gradient(circle at top left, rgba(255, 255, 255, 0.2), transparent 45%);
+  opacity: 0.15;
+  z-index: 0;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+}
+
+.certificate {
+  margin-top: -40px;
+  padding-bottom: 4rem;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  position: relative;
+  padding: clamp(1rem, 2vw, 1.5rem);
+  padding-top: clamp(0.5rem, 1vw, 1rem);
+  background: var(--card-bg);
+  border-radius: 24px;
+  box-shadow: 0 30px 60px rgba(26, 35, 126, 0.15);
+  overflow: hidden;
+  max-width: 900px;
+  width: 100%;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 1.6rem;
+}
+
+.card dl {
+  margin: 1.5rem 0 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.card dt {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.card dd {
+  margin: 0.15rem 0 0;
+  font-size: 0.98rem;
+  font-weight: 400;
+}
+
+.card div {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding-left: 0.2rem;
+  border-bottom: 1px solid #eef1ff;
+  padding-bottom: 1rem;
+}
+
+.card div:last-child {
+  border-bottom: none;
+}
+
+.not-found {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1rem;
+}
+
+.site-footer {
+  background: #061431;
+  color: white;
+  padding: 4rem 0 1.5rem;
+  margin-top: 4rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2rem;
+}
+
+.footer-grid img {
+  width: 52px;
+  margin-bottom: 0.5rem;
+}
+
+.footer-grid p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.footer-grid h3 {
+  margin-top: 0;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.footer-grid a {
+  display: block;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 0.3rem;
+  font-size: 0.95rem;
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.scroll-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 1.5rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  box-shadow: 0 15px 30px rgba(34, 83, 255, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.scroll-top.visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.scroll-top:not(.visible) {
+  transform: translateY(10px);
+}
+
+@media (max-width: 768px) {
+  nav {
+    display: none;
+  }
+
+  .card {
+    padding: 1.75rem;
+  }
+
+  .card dl {
+    gap: 0.6rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+}
+
